@@ -94,16 +94,14 @@ sequenceDiagram
     main->>ov: Lock screen, load duration, play chimes
     main->>db: Notify pause countdown
 
-    choice Overlay Interaction
-        alt Break Complete (20 seconds finished)
-            ov->>main: Send IPC 'break-complete'
-            main->>store: Increment completedBreaks & add screenTime
-            main->>db: Trigger statistics refresh
-        else Skip Break (Clicked skip button)
-            ov->>main: Send IPC 'break-skip'
-            main->>store: Increment skippedBreaks & reset
-            main->>db: Trigger statistics refresh
-        end
+    alt Break Complete (20 seconds finished)
+        ov->>main: Send IPC 'break-complete'
+        main->>store: Increment completedBreaks & add screenTime
+        main->>db: Trigger statistics refresh
+    else Skip Break (Clicked skip button)
+        ov->>main: Send IPC 'break-skip'
+        main->>store: Increment skippedBreaks & reset
+        main->>db: Trigger statistics refresh
     end
 
     main->>ov: Close Overlay Window
