@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VisionGuard - Time to Relax</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Fullscreen dark blurred overlay container -->
+  <div class="overlay-container">
+    
+    <!-- Floating ambient blobs -->
+    <div class="ambient-blob primary"></div>
+    <div class="ambient-blob secondary"></div>
+
+    <!-- Active Eye Exercise Tracker Dot (Moves programmatically) -->
+    <div id="eye-tracker-dot"></div>
+
+    <!-- Centered Breathing & Relaxation Panel -->
+    <div class="relaxation-panel" id="panel-relax">
+      <h1 id="overlay-title">Relax Your Eye Muscles</h1>
+      <p id="overlay-desc">Follow the green circle with your eyes to exercise your focusing muscles.</p>
+      
+      <!-- Soothing breathing visualizer & countdown ring -->
+      <div class="breathe-circle-container">
+        <div class="breathe-ring outer-ring"></div>
+        <div class="breathe-ring middle-ring"></div>
+        <div class="breathe-circle" id="breathe-circle-element">
+          <div class="countdown-number" id="countdown-text">20</div>
+          <div class="countdown-unit" id="countdown-unit-text">seconds remaining</div>
+        </div>
+      </div>
+
+
+
+      <!-- Footer action -->
+      <button class="btn-skip" id="btn-skip-break">Skip Break</button>
+    </div>
+
+    <!-- Completed break screen (shows briefly before closing) -->
+    <div class="relaxation-panel hidden" id="panel-completed">
+      <div class="completed-icon">👁️✨</div>
+      <h1 id="completed-title">Excellent Job!</h1>
+      <p id="completed-desc">Your eyes are now refreshed. Let's get back to work safely!</p>
+    </div>
+
+    <!-- Strict Mode Warning Modal -->
+    <div class="strict-toast" id="strict-toast-element">
+      ⚠️ Strict Mode Active! Please complete your break to preserve your vision.
+    </div>
+
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

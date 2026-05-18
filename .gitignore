@@ -1,0 +1,79 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Built application directory (Electron distribution)
+VisionGuard/
+
+# Precompiled Windows Setup executables
+VisionGuard-Setup.exe
+Uninstall-VisionGuard.exe
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Diagnostic reports (federated signing, crashdumps)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Directory for instrumented code coverage downloads
+lib-cov
+coverage
+*.lcov
+
+# Caches and temporary folders
+.nyc_output
+.eslintcache
+.stylelintcache
+.node_repl_history
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.vuepress/
+.docusaurus/
+.expo/
+.expo-shared/
+
+# Serverless Webpack directories
+.webpack/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.bak
+*.tmp

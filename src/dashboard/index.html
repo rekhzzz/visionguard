@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VisionGuard - 20-20-20 Rule Reminder</title>
+  <!-- Google Fonts for premium typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <!-- Left Sidebar: Brand & Dynamic Navigation Tabs -->
+    <aside class="sidebar">
+      <div class="app-brand">
+        <img src="../shared/icon.png" class="logo-icon-img" alt="VisionGuard Logo" style="width: 28px; height: 28px; image-rendering: pixelated; margin-right: 2px;">
+        <div>
+          <h1 id="app-title">VisionGuard</h1>
+          <p id="app-tagline">Penjaga Kesehatan Mata Anda</p>
+        </div>
+      </div>
+
+      <!-- Navigation Menu -->
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="dashboard">
+          <span class="nav-icon">📊</span>
+          <span class="nav-text" id="nav-dashboard">Dashboard</span>
+        </button>
+        <button class="nav-item" data-tab="settings">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-text" id="nav-settings">Pengaturan</span>
+        </button>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <span>v1.1.0</span>
+      </div>
+    </aside>
+
+    <!-- Right Content Area: Dynamic Tabs -->
+    <main class="main-content">
+      
+      <!-- TAB 1: DASHBOARD (TIMER & STATISTICS) -->
+      <div id="tab-dashboard" class="tab-content active">
+        <div class="dashboard-layout">
+          
+          <!-- Left Column: Visual Countdown -->
+          <div class="timer-column">
+            <div class="timer-card">
+              <div class="circular-timer">
+                <svg class="progress-ring" width="200" height="200">
+                  <defs>
+                    <linearGradient id="gradient-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#34d399" />
+                      <stop offset="100%" stop-color="#10b981" />
+                    </linearGradient>
+                  </defs>
+                  <!-- Background circle track -->
+                  <circle class="progress-ring-track" stroke="rgba(255, 255, 255, 0.03)" stroke-width="8" fill="transparent" r="90" cx="100" cy="100"/>
+                  <!-- Animated foreground progress circle -->
+                  <circle class="progress-ring-circle" stroke="url(#gradient-emerald)" stroke-width="8" fill="transparent" r="90" cx="100" cy="100" stroke-linecap="round"/>
+                </svg>
+                <div class="timer-info">
+                  <span id="timer-label">Next Break In</span>
+                  <div id="timer-display">20:00</div>
+                  <div class="status-badge active" id="status-badge">
+                    <span class="status-dot"></span>
+                    <span id="status-text">Running Active</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Segmented Mode Switcher -->
+              <div class="mode-toggle-container">
+                <button class="mode-toggle-btn active" id="btn-mode-202020">Aturan 20-20-20</button>
+                <button class="mode-toggle-btn" id="btn-mode-exercise">Latihan Mata</button>
+              </div>
+
+              <div class="timer-controls">
+                <button id="btn-take-break" class="btn btn-primary">Take Break Now 👁️</button>
+                <button id="btn-pause-resume" class="btn btn-secondary">Pause Reminder</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Statistics Grid -->
+          <div class="stats-column">
+            <section class="stats-section">
+              <div class="stats-grid">
+                <!-- Eye Care Score Card -->
+                <div class="stat-card score-card">
+                  <div class="stat-icon">📈</div>
+                  <div class="stat-details">
+                    <h3 id="stat-score-label">Eye Care Score</h3>
+                    <div class="score-display">
+                      <span id="stat-score-value">100</span><span class="percent-sign">%</span>
+                    </div>
+                  </div>
+                  <div class="score-bar-container">
+                    <div class="score-bar" id="stat-score-bar" style="width: 100%"></div>
+                  </div>
+                </div>
+
+                <!-- Completed Breaks Card -->
+                <div class="stat-card">
+                  <div class="stat-icon completed">✅</div>
+                  <div class="stat-details">
+                    <h3 id="stat-completed-label">Breaks Completed</h3>
+                    <div class="stat-number" id="stat-completed-value">0</div>
+                  </div>
+                </div>
+
+                <!-- Skipped Breaks Card -->
+                <div class="stat-card">
+                  <div class="stat-icon skipped">⚠️</div>
+                  <div class="stat-details">
+                    <h3 id="stat-skipped-label">Breaks Skipped</h3>
+                    <div class="stat-number" id="stat-skipped-value">0</div>
+                  </div>
+                </div>
+
+                <!-- Screen Time Card -->
+                <div class="stat-card full-width">
+                  <div class="stat-icon time">🕒</div>
+                  <div class="stat-details">
+                    <h3 id="stat-screentime-label">Screen Time Today</h3>
+                    <div class="stat-number" id="stat-screentime-value">0 min</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- 7-Day Weekly Performance Stock Chart Panel -->
+            <div class="history-card">
+              <div class="history-title-row">
+                <h2 id="lbl-history-title">Grafik Performa 7 Hari Terakhir</h2>
+              </div>
+              <div class="chart-container" style="position: relative; margin-top: 16px; width: 100%;">
+                <svg id="stock-chart" viewBox="0 0 500 160" width="100%" height="160" style="overflow: visible;">
+                  <defs>
+                    <!-- Area gradient fill -->
+                    <linearGradient id="chart-area-grad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#10b981" stop-opacity="0.25" />
+                      <stop offset="100%" stop-color="#10b981" stop-opacity="0.00" />
+                    </linearGradient>
+                    <!-- Glowing line gradient -->
+                    <linearGradient id="chart-line-grad" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stop-color="#34d399" />
+                      <stop offset="100%" stop-color="#10b981" />
+                    </linearGradient>
+                  </defs>
+                  <!-- Horizontal Grid Lines -->
+                  <line x1="30" y1="20" x2="490" y2="20" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+                  <line x1="30" y1="75" x2="490" y2="75" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+                  <line x1="30" y1="130" x2="490" y2="130" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+                  
+                  <!-- Y-Axis labels (Dynamic Screen Time Hours Range) -->
+                  <text id="y-label-top" x="5" y="24" fill="#64748b" font-size="9" font-family="'Outfit', sans-serif">12 jam</text>
+                  <text id="y-label-mid" x="5" y="79" fill="#64748b" font-size="9" font-family="'Outfit', sans-serif">6 jam</text>
+                  <text id="y-label-low" x="5" y="134" fill="#64748b" font-size="9" font-family="'Outfit', sans-serif">0 jam</text>
+
+                  <!-- Filled area path -->
+                  <path id="chart-area" d="" fill="url(#chart-area-grad)" />
+                  <!-- Line stroke path -->
+                  <path id="chart-line" d="" fill="none" stroke="url(#chart-line-grad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                  
+                  <!-- Interactive coordinate dots -->
+                  <g id="chart-dots"></g>
+                  
+                  <!-- X-Axis Labels -->
+                  <g id="chart-x-labels"></g>
+                </svg>
+
+                <!-- Floating stock-market tooltip card -->
+                <div id="chart-tooltip" class="chart-tooltip-bubble" style="opacity: 0; pointer-events: none; position: absolute; background: #0f172a; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 8px 12px; font-size: 11px; z-index: 10; box-shadow: 0 4px 20px rgba(0,0,0,0.5); width: max-content; transition: opacity 0.15s ease-out;">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+            </div>
+
+          </div>
+          
+        </div>
+      </div>
+
+      <!-- TAB 2: SETTINGS (APPLICATION PREFERENCES) -->
+      <div id="tab-settings" class="tab-content">
+        <section class="settings-section">
+          <div class="settings-card">
+            <h2 id="settings-title">Application Settings</h2>
+            
+            <div class="settings-list">
+              <!-- Language Dropdown -->
+              <div class="setting-item">
+                <div class="setting-info">
+                  <label for="setting-lang" class="setting-label" id="label-lang">Language (Bahasa)</label>
+                </div>
+                <div class="setting-control">
+                  <select id="setting-lang" class="form-select">
+                    <option value="id">Bahasa Indonesia</option>
+                    <option value="en">English (US)</option>
+                    <option value="es">Español</option>
+                    <option value="ja">日本語</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Break Mode Dropdown -->
+              <div class="setting-item">
+                <div class="setting-info">
+                  <label for="setting-breakmode" class="setting-label" id="label-breakmode">Mode Istirahat</label>
+                </div>
+                <div class="setting-control">
+                  <select id="setting-breakmode" class="form-select">
+                    <option value="20-20-20" id="opt-mode-202020">Aturan 20-20-20 (Default)</option>
+                    <option value="exercise" id="opt-mode-exercise">Latihan Otot Mata</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Interval Slider -->
+              <div class="setting-item flex-column">
+                <div class="setting-slider-header">
+                  <label for="setting-interval" class="setting-label" id="label-interval">Work Interval Jumps</label>
+                  <span class="slider-value" id="val-interval">20 min</span>
+                </div>
+                <div class="setting-control">
+                  <input type="range" id="setting-interval" min="10" max="60" step="5" value="20" class="form-range">
+                </div>
+              </div>
+
+              <!-- Duration Slider -->
+              <div class="setting-item flex-column">
+                <div class="setting-slider-header">
+                  <label for="setting-duration" class="setting-label" id="label-duration">Break Duration Length</label>
+                  <span class="slider-value" id="val-duration">20 sec</span>
+                </div>
+                <div class="setting-control">
+                  <input type="range" id="setting-duration" min="10" max="60" step="5" value="20" class="form-range">
+                </div>
+              </div>
+
+              <hr class="setting-divider">
+
+              <!-- Strict Mode Toggle -->
+              <div class="setting-item">
+                <div class="setting-info">
+                  <div class="setting-title-container">
+                    <span class="setting-label" id="label-strict">Strict Mode</span>
+                  </div>
+                  <span class="setting-desc" id="desc-strict">Locks the break screen, preventing you from closing or skipping it early.</span>
+                </div>
+                <div class="setting-control">
+                  <label class="switch">
+                    <input type="checkbox" id="setting-strict">
+                    <span class="slider-toggle"></span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Sound Toggle -->
+              <div class="setting-item">
+                <div class="setting-info">
+                  <span class="setting-label" id="label-sound">Sounds & Chimes</span>
+                  <span class="setting-desc" id="desc-sound">Enable relaxing meditation chimes and soft countdown ticking.</span>
+                </div>
+                <div class="setting-control">
+                  <label class="switch">
+                    <input type="checkbox" id="setting-sound" checked>
+                    <span class="slider-toggle"></span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Startup Toggle -->
+              <div class="setting-item">
+                <div class="setting-info">
+                  <span class="setting-label" id="label-startup">Run on Windows Startup</span>
+                  <span class="setting-desc" id="desc-startup">Launch VisionGuard automatically when your Windows computer starts.</span>
+                </div>
+                <div class="setting-control">
+                  <label class="switch">
+                    <input type="checkbox" id="setting-startup">
+                    <span class="slider-toggle"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <hr class="setting-divider" style="margin: 18px 0 14px 0;">
+
+            <!-- Reset Buttons -->
+            <div class="settings-actions" style="display: flex; gap: 12px; width: 100%;">
+              <button id="btn-reset-settings" class="btn btn-secondary btn-reset-pref" style="flex: 1; padding: 10px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; text-align: center; border: 1px dashed rgba(255, 255, 255, 0.08); color: var(--text-secondary); background: rgba(255, 255, 255, 0.01); transition: var(--transition-smooth);">Reset Settings 🔄</button>
+              <button id="btn-reset-history" class="btn btn-secondary btn-reset" style="flex: 1; padding: 10px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; text-align: center; border: 1px dashed rgba(244, 63, 94, 0.2); color: var(--color-red); background: var(--color-red-glow); transition: var(--transition-smooth);">Reset History 🗑️</button>
+            </div>
+
+            <!-- Toast Notification for settings saved -->
+            <div class="toast" id="toast-saved">Settings saved!</div>
+          </div>
+        </section>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

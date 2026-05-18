@@ -1,0 +1,15 @@
+{
+  "name": "vision-guard",
+  "version": "1.0.0",
+  "description": "Premium 20-20-20 rule break reminder for Windows",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": ["eye-care", "health", "reminder", "productivity"],
+  "author": "Antigravity & Rekhzzz",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^35.0.0"
+  }
+}
